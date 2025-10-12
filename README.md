@@ -51,23 +51,21 @@ To build robust models, the dataset was carefully prepared using Python:
   - **Polynomial Kernel:** For capturing curved decision boundaries
   - **RBF Kernel:** For highly non-linear classification tasks
 
-![Salary Classification](images/salary_classification.png)
+![Salary Classification](images/download(2).png)
 
-![KNN Classification](images/knn_classification.png)
+![KNN Classification](images/download(4).png)
 
-![Linear SVM](images/linear_svm.png)
+![Linear_Regression](images/download.png)
 
-![Polynomial Kernel SVM](images/polynomial_kernel_svm.png)
+![Confusion_Matrix](images/download(7).png)
 
-![RBF SVM Training](images/rbf_svm_training.png)
+![RBF SVM Training](images/download(5).png)
 
 ### 3. Neural Networks on RISC-V Microcontrollers
 
 * **MLP Classifier:** Built Multi-Layer Perceptron with hidden layers (64, 32), ReLU activation, and Adam optimizer.
 * **Training Performance:** Achieved **96% accuracy** on 60,000 training samples with 784 features.
 * **Model Parameters:** 52,650 total trainable parameters.
-
-![Neural Network Architecture](images/neural_network_mlp.png)
 
 ### 4. Post-Training Quantization (TensorFlow Lite)
 
@@ -78,8 +76,6 @@ To build robust models, the dataset was carefully prepared using Python:
 
 * **Model to C Array:** Converted `.tflite` model into C header and source files (`model_params.h`, `model_params.c`) containing quantized weights and biases as integer arrays.
 * **Lightweight Inference Engine:** Wrote simple C functions to perform neural network operations using only integer arithmetic on the RISC-V core.
-
-![VSDSquadron Board](images/vsdsquadron_board.png)
 
 ---
 
@@ -98,5 +94,3 @@ To build robust models, the dataset was carefully prepared using Python:
 * **Tools:** `xxd` (for model conversion), `zadig-2.9.exe` (for board USB drivers on Windows)
 
 ---
-
-## 📂 Repository Structure
