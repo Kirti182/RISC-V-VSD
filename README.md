@@ -8,7 +8,7 @@ This work is part of the **VLSI System Design (VSD) RISC-V Edge AI with VSDSquad
 
 ---
 
-## 🎯 Project Objective
+##  Project Objective
 
 The primary goal is to build a complete, embedded system for machine learning classification. The objectives are to:
 
@@ -29,7 +29,7 @@ Deploying machine learning models on microcontrollers like the SiFive FE310-G002
 
 ---
 
-## 🛠️ Methodology & Deployment Pipeline
+##  Methodology & Deployment Pipeline
 
 The project follows a structured pipeline from Python-based model development to C-based firmware deployment.
 
@@ -41,7 +41,7 @@ To build robust models, the dataset was carefully prepared using Python:
 * **Classification Dataset:** Analyzed age vs. estimated salary data with binary classification (classes 0 and 1).
 * **Data Normalization:** Scaled features for better model convergence and generalization.
 
-![Polynomial Regression](images/polynomial_regression.png)
+![Linear_Regression](images/download.png)
 
 ### 2. Classification Models (Scikit-learn)
 
@@ -51,11 +51,7 @@ To build robust models, the dataset was carefully prepared using Python:
   - **Polynomial Kernel:** For capturing curved decision boundaries
   - **RBF Kernel:** For highly non-linear classification tasks
 
-![Salary Classification](images/download(2).png)
-
 ![KNN Classification](images/download(4).png)
-
-![Linear_Regression](images/download.png)
 
 ![Confusion_Matrix](images/download(7).png)
 
@@ -79,7 +75,7 @@ To build robust models, the dataset was carefully prepared using Python:
 
 ---
 
-## 💻 Hardware and Software
+##  Hardware and Software
 
 #### Target Hardware
 
@@ -94,3 +90,88 @@ To build robust models, the dataset was carefully prepared using Python:
 * **Tools:** `xxd` (for model conversion), `zadig-2.9.exe` (for board USB drivers on Windows)
 
 ---
+
+##  Getting Started
+
+### Part A: Training the Model (Python Environment)
+
+1. **Clone the repository:**
+```bash
+   git clone https://github.com/Kirti182/RISC-V-VSD.git
+   cd RISC-V-VSD
+```
+2. **Setup Python Environment:**
+    ```bash
+   cd python_training
+   pip install -r requirements.txt
+
+3. **Download Dataset:**
+
+Prepare your classification dataset (age vs. salary or similar binary classification data).
+Place it in the data/ directory.
+
+
+Run Training & Quantization:
+
+Open and run the Jupyter notebooks in sequence to train models, quantize them, and generate C-arrays.
+
+
+Part B: Deploying to RISC-V Board
+1. Open Freedom Studio and Import the Project
+
+Launch Freedom Studio.
+Go to File > Import... > Existing Projects into Workspace.
+Select the project directory and import it.
+
+2. Clean and Build the Project
+
+Navigate to:
+
+Project > Clean... — select the project and confirm.
+Project > Build Project — this will compile the project and generate the main.elf file.
+
+
+
+3. Run in Simulation (Optional)
+
+Configure a debug launch for simulation:
+
+Go to Run > Debug Configurations....
+Create or modify a SiFive GDB OpenOCD Debugging configuration.
+Ensure the Executable path points to the correct main.elf file.
+
+
+Start the simulation.
+Observe output in the Freedom Studio Console.
+
+4. Flash to VSDSquadron PRO Board
+
+Connect the board via USB.
+If on Windows, use zadig-2.9.exe to install the correct USB drivers:
+
+Run Zadig.
+Select the connected USB device (usually shows as "USB Serial" or similar).
+Choose WinUSB as the driver and click Install Driver.
+
+
+Use your preferred flashing tool, such as OpenOCD, to flash the main.elf file:
+```
+openocd -f interface/ftdi/vsdsquadron.cfg -f target/sifive.cfg -c "program path/to/main.elf verify reset exit"
+```
+## Key Learnings
+This project provides practical experience in the complete end-to-end workflow of an Edge AI application:
+
+Model Progression: Mastered the journey from polynomial regression to advanced SVM and neural network classifiers.
+Model Optimization: Applied post-training quantization to fit 52,650-parameter models onto tiny devices.
+Bare-Metal Programming: Understood how to implement ML inference from scratch in C for a RISC-V target without an OS.
+
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+## Acknowledgments
+
+Thanks to VLSI System Design (VSD) for providing the course resources and project guidance.
+Thanks to SiFive for the FE310-G002 SoC specifications.
+Credit to scikit-learn and TensorFlow teams for their powerful machine learning frameworks.
+
+
